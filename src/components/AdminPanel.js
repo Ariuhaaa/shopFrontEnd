@@ -2,53 +2,79 @@ import React from "react";
 
 export default function AdminPanel() {
   return (
-    <div className="container ">
+    <div className="container-fluid">
       <div className="d-flex">
-        <div className="left col-2 container">
-          <div className="menu">
-            <div className="d-flex">
-              <i class="bi bi-person-circle"></i>
-              <div className="space">Profile</div>
-            </div>
-            <div className="d-flex">
-              <i class="bi bi-box-seam"></i>
-              <div className="space">Dashboard</div>
-            </div>
-            <div className="space">Category</div>
-            <div className="space">Products</div>
+        <div className="left col-3 container ">
+          <div className="menu mt-3">
+            <h4 className="text">Online Shop</h4>
+            <hr className="text" />
+            <div className="space text">Profile</div>
+            <div className="space text">Dashboard</div>
+            <div className="space text">Category</div>
+            <div className="space text">Products</div>
           </div>
         </div>
-        <div className="right col-10 container">
-          <div>
-            <div className="d-flex gap-3 justify-content-end">
-              <div className="d-flex">
-                <i class="bi bi-person-circle"></i>
-                <div>User</div>
-              </div>
-              <div className="d-flex">
-                <i class="bi bi-box-arrow-right"></i>
-                <div>Log Out</div>
+        <div className="right col-9 container ">
+          <div className="d-flex gap-4 justify-content-end mb-4 mt-3 ">
+            <div className="d-flex gap-1">
+              <i class="bi bi-person-circle"></i>
+              <div>User</div>
+            </div>
+            <div className="d-flex  gap-1">
+              <i class="bi bi-box-arrow-right"></i>
+              <div>Log Out</div>
+            </div>
+          </div>
+          <div class="input-group mb-5 w-50">
+            <input
+              type="text"
+              className="form-control "
+              placeholder="..."
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="button-addon2"
+            >
+              Search
+            </button>
+          </div>
+          <div className="d-flex justify-content-between gap-2">
+            <div className="col-md-3">
+              <div className="card p-3">
+                <h4 className="card-title text-danger">New orders</h4>
+                <hr />
+                <div className="d-flex justify-content-between align-items-center">
+                  <i class="bi bi-cart-check" style={{ fontSize: "40px" }}></i>
+                  <h3>-</h3>
+                </div>
               </div>
             </div>
-            <div className="d-flex justify-content-between">
-              <div className="d-flex border">
-                <i class="bi bi-cart-check"></i>
-                <div>New orders</div>
+            <div className="col-md-3">
+              <div className="card p-3">
+                <h4 className="card-title text-warning">New product</h4>
+                <hr />
+                <div className="d-flex justify-content-between align-items-center">
+                  <i class="bi bi-box" style={{ fontSize: "40px" }}></i>
+
+                  <h3>-</h3>
+                </div>
               </div>
-              <div>
-                <div className="border">New product</div>
-              </div>
-              <div className="d-flex border">
-                <i class="bi bi-person-plus"></i>
-                <div>New User</div>
+            </div>
+            <div className="col-md-3">
+              <div className="card p-3">
+                <h4 className="card-title text-info">New User</h4>
+                <hr />
+
+                <div className="d-flex justify-content-between align-items-center">
+                  <i class="bi bi-person-plus" style={{ fontSize: "40px" }}></i>
+                  <h3>-</h3>
+                </div>
               </div>
             </div>
           </div>
-          <input
-            type="text"
-            placeholder="Search"
-            className="form-control w-50"
-          />
         </div>
       </div>
     </div>
