@@ -1,6 +1,7 @@
 import React from "react";
+import { Link, Outlet } from "react-router-dom";
 
-export default function AdminPanel() {
+export default function AdminLayout() {
   return (
     <div className="container-fluid">
       <div className="d-flex">
@@ -8,10 +9,26 @@ export default function AdminPanel() {
           <div className="menu mt-3">
             <h4 className="text">Online Shop</h4>
             <hr className="text" />
-            <div className="space text">Profile</div>
-            <div className="space text">Dashboard</div>
-            <div className="space text">Category</div>
-            <div className="space text">Products</div>
+            <div className=" space text">
+              <Link to="/profile" className="line">
+                Profile
+              </Link>
+            </div>
+            <div className="space text">
+              <Link to="/dashboard" className="line ">
+                Dashboard
+              </Link>
+            </div>
+            <div className="space text">
+              <Link to="/category" className="line space text">
+                Category
+              </Link>
+            </div>
+            <div className="space text">
+              <Link to="/products" className="line ">
+                Products
+              </Link>
+            </div>
           </div>
         </div>
         <div className="right col-9 container ">
@@ -41,6 +58,9 @@ export default function AdminPanel() {
               Search
             </button>
           </div>
+
+          <Outlet />
+
           <div className="d-flex justify-content-between gap-2">
             <div className="col-md-3">
               <div className="card p-3">
