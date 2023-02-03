@@ -16,7 +16,7 @@ export default function Category() {
 
   function addCate() {
     //POST
-    fetch("http://localhost:8000/api/category", {
+    fetch("http://localhost:8080/api/category", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(myData),
@@ -31,7 +31,7 @@ export default function Category() {
 
   function getData() {
     //GET
-    fetch("http://localhost:8000/api/category")
+    fetch("http://localhost:8080/api/category")
       .then((res) => res.json())
       .then((data) => {
         setTableData(data.result);
@@ -44,7 +44,7 @@ export default function Category() {
 
   function cateDelete(id) {
     //DELETE
-    fetch(`http://localhost:8000/api/category/${id}`, {
+    fetch(`http://localhost:8080/api/category/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -57,7 +57,7 @@ export default function Category() {
   function cateEdit(id) {
     setOrNot(true);
     //UPDATE
-    fetch(`http://localhost:8000/api/category/${id}`)
+    fetch(`http://localhost:8080/api/category/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setMyData(data.result[0]);
@@ -69,7 +69,7 @@ export default function Category() {
     const id = myData.categoryId;
     console.log(id);
     //put
-    fetch(`http://localhost:8000/api/category/${id}`, {
+    fetch(`http://localhost:8080/api/category/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(myData),
@@ -85,7 +85,8 @@ export default function Category() {
   return (
     <div className="container">
       <div>
-        <h1>Category</h1>
+        <h3>Category</h3>
+        <br />
         <input
           type="text"
           className="form-control"
@@ -96,17 +97,18 @@ export default function Category() {
           }}
         />
 
-        <div className="m-3">
+        <div className="m-3 d-flex gap-2">
           <button
             className="btn btn-success"
             onClick={() => (orNot ? Edit() : addCate())}
           >
-            {orNot ? "hadgalah" : "nemeh"}
+            {orNot ? "Save" : "Add"}
           </button>
-          <button className="btn btn-primary">Гарах</button>
+          <button className="btn btn-primary">Close</button>
         </div>
       </div>
-      <hr />
+      <br />
+      <br />
       <h3>Category list</h3>
       <table className="table ">
         <thead>

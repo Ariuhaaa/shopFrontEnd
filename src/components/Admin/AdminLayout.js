@@ -10,8 +10,13 @@ export default function AdminLayout() {
             <h4 className="text">Online Shop</h4>
             <hr className="text" />
             <div className=" space text">
-              <Link to="/profile" className="line">
-                Profile
+              <Link to="/user" className="line">
+                Users
+              </Link>
+            </div>
+            <div className="space text">
+              <Link to="/menu" className="line ">
+                Menu
               </Link>
             </div>
             <div className="space text">
@@ -46,7 +51,7 @@ export default function AdminLayout() {
             <input
               type="text"
               className="form-control "
-              placeholder="..."
+              placeholder="search"
               aria-label="Recipient's username"
               aria-describedby="button-addon2"
             />
