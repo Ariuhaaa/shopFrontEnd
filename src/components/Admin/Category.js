@@ -68,7 +68,7 @@ export default function Category() {
     console.log("here");
     const id = myData.categoryId;
     console.log(id);
-    //put
+    //PUT
     fetch(`http://localhost:8080/api/category/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -96,7 +96,6 @@ export default function Category() {
             setMyData({ ...myData, categoryName: e.target.value });
           }}
         />
-
         <div className="m-3 d-flex gap-2">
           <button
             className="btn btn-success"
