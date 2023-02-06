@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function User() {
+  const UserNew = ({ searchParams, setSearchParams, title, onSave }) => {
+    const [show, setShow] = useState(searchParams && true);
+
+    const init = {
+      firstname: "",
+      lastname: "",
+      username: "",
+      password: "",
+      email: "",
+    };
+
+    const [userItem, setUserItem] = useState(init);
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [isValid, setIsValid] = useState([]);
+
+    const onClose = () => {
+      setSearchParams({});
+      setShow(false);
+    };
+  };
   return (
     <div>
       <h3>User information</h3>

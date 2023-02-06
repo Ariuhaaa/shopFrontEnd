@@ -7,6 +7,7 @@ import Dashboard from "./components/Admin/Dashboard";
 import Products from "./components/Admin/Products";
 import Menu from "./components/Admin/Menu";
 import User from "./components/Admin/User";
+import ProductNew from "./components/Admin/ProductNew";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/category" element={<Category />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/product" element={<ProductNew />} />
         </Route>
       </Routes>
     </div>

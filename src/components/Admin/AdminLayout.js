@@ -36,7 +36,7 @@ export default function AdminLayout() {
             </div>
           </div>
         </div>
-        <div className="right col-9 container ">
+        <div className="right col-9 container-fluid ">
           <div className="d-flex gap-4 justify-content-end mb-4 mt-3 ">
             <div className="d-flex gap-1">
               <i class="bi bi-person-circle"></i>

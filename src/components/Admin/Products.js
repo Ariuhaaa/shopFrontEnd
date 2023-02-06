@@ -1,65 +1,78 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Products() {
-  //   const ProductNew = { searchParams, setSearchParams, title, onSave };
-  const [productItem, setProductItem] = useState([]);
+  const navigate = useNavigate();
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/product")
+      .then((res) => setProducts(res.data.result));
+  }, []);
 
   return (
     <div>
-      <div>
-        <div>
-          <h4>Product name</h4>
-          <input type="text" className="form-control w-75" />
-        </div>
-        <div>
-          <br />
-          <h4>Price</h4>
-          <input type="text" className="form-control w-75" />
-        </div>
-        <br />
-        <h4>Upload File</h4>
-        <div class="input-group mt-3 mb-3">
-          <div>
-            <input
-              type="file"
-              class="form-control"
-              id="inputGroupFile04"
-              aria-describedby="inputGroupFileAddon04"
-              aria-label="Upload"
-              onChange={(e) => {
-                const url = "https://api.cloudinary.com/v1_1/dno2srn4n/upload";
+      <h2> Product List</h2>
+      <button className="btn btn-primary" onClick={() => navigate("/product")}>
+        Add new product
+      </button>
+      <br />
+      <br />
 
-                const formData = new FormData();
-
-                let file = e.target.files[0];
-                formData.append("file", file);
-                formData.append("api-key", "827464371697588");
-                formData.append("folder", "onlineShop");
-                formData.append("upload_present", "fhnodb1h");
-
-                axios
-                  .post(url, formData)
-                  .then((res) => {
-                    console.log(res);
-
-                    setProductItem({
-                      ...productItem,
-                      thumbImage: res.data.secure_url,
-                    });
-                  })
-                  .catch((err) => console.log(err));
-              }}
-            />
-            <br />
-          </div>
-        </div>
-        <hr />
-        <div className="d-flex gap-2">
-          <button className="btn btn-primary">Save</button>
-          <button className="btn btn-danger">Close</button>
-        </div>
-      </div>
+      <table className="table col">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Id</th>
+            <th scope="col">CategoryId</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+            <th scope="col">Sale</th>
+            <th scope="col">Description</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map(
+            (
+              {
+                id,
+                productName,
+                price,
+                categoryId,
+                thumbImage,
+                salePercent,
+                description,
+                quantity,
+              },
+              index
+            ) => (
+              <tr>
+                <td>{index + 1}</td>
+                <td>{productName}</td>
+                <td>{id}</td>
+                <td>{categoryId}</td>
+                <td>{price}</td>
+                <td>
+                  <img width={50} src={thumbImage} alt="hs" />
+                </td>
+                <td>{salePercent}</td>
+                <td>{description}</td>
+                <td>{quantity}</td>
+                <div className="d-flex">
+                  <button className="btn btn-danger">Edit</button>
+                  <button className="btn btn-warning">Delete</button>
+                </div>
+              </tr>
+            )
+          )}
+        </tbody>
+      </table>
     </div>
   );
 }
