@@ -56,7 +56,7 @@ export default function Category() {
 
   function cateEdit(id) {
     setOrNot(true);
-    //UPDATE
+    //UPDATE tsaash n edit hiigeed yavuulj bga
     fetch(`http://localhost:8080/api/category/${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -68,7 +68,7 @@ export default function Category() {
     console.log("here");
     const id = myData.categoryId;
     console.log(id);
-    //PUT
+    //field duurgeh
     fetch(`http://localhost:8080/api/category/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

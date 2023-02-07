@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Category from "./Category";
 
 export default function Products() {
   const navigate = useNavigate();
@@ -8,10 +9,24 @@ export default function Products() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/product")
-      .then((res) => setProducts(res.data.result));
+    axios.get("http://localhost:8080/api/product").then(
+      (res) => {
+        setProducts(res.data.result);
+        console.log(res.data.result);
+      },
+      (err) => console.log(err)
+    );
   }, []);
+
+  function productDelete(id) {
+    fetch(`http://localhost:8080/api/product/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data.result);
+      });
+  }
 
   return (
     <div>
@@ -65,8 +80,18 @@ export default function Products() {
                 <td>{description}</td>
                 <td>{quantity}</td>
                 <div className="d-flex">
-                  <button className="btn btn-danger">Edit</button>
-                  <button className="btn btn-warning">Delete</button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => navigate("/product")}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-warning"
+                    onClick={() => productDelete(id)}
+                  >
+                    Delete
+                  </button>
                 </div>
               </tr>
             )
