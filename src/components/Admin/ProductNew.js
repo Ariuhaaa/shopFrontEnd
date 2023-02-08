@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { apiKey, folderName, cloudName, uploadPreset } from "../Admin/Constant";
 
 import { useNavigate } from "react-router-dom";
 
@@ -32,6 +33,49 @@ export default function ProductNew() {
         // console.log(res.data.result);
       })
       .catch((err) => console.log(err));
+  };
+
+  const sendFile = async (fieldName, files) => {
+    setLoading(true);
+    console.log(files);
+
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+    const newArr = [];
+    for (let i = 0; i < files[0].length; i++) {
+      newArr.push(files[0][i]);
+    }
+
+    const promise = await Promise.all(
+      newArr.map((file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("api_key", apiKey);
+        formData.append("folder", folderName);
+        formData.append("upload_preset", uploadPreset);
+
+        return axios.post(url, formData);
+      })
+    );
+    console.log(promise);
+
+    const arr = [];
+
+    promise.map((res) => {
+      arr.push(res.data.secure_url);
+    });
+
+    if (fieldName == "images") {
+      setProductItem({
+        ...productItem,
+        images: arr,
+      });
+    } else {
+      setProductItem({
+        ...productItem,
+        thumbImage: arr[0],
+      });
+    }
+    setLoading(false);
   };
 
   return (
@@ -94,45 +138,51 @@ export default function ProductNew() {
           }}
         />
         <br />
+        <div>
+          <h5>Image</h5>
+          <div class="input-group mt-3 mb-3">
+            <div>
+              <input
+                type="file"
+                class="form-control"
+                id="inputGroupFile04"
+                aria-describedby="inputGroupFileAddon04"
+                aria-label="Upload"
+                onChange={(e) => {
+                  console.log(e.target.files);
 
-        <h5>Upload File</h5>
-        <div class="input-group mt-3 mb-3">
-          <div>
-            <input
-              type="file"
-              class="form-control"
-              id="inputGroupFile04"
-              aria-describedby="inputGroupFileAddon04"
-              aria-label="Upload"
-              onChange={(e) => {
-                setLoading(true);
-                const url = "https://api.cloudinary.com/v1_1/dno2srn4n/upload";
+                  const arr = [];
+                  arr.push(e.target.files);
+                  sendFile("thumbImage", arr);
+                }}
+              />
+              {loading && "Uploading ..."}
+              <br />
+            </div>
+          </div>
+        </div>
+        <div>
+          <h5>Slide images</h5>
+          <div class="input-group mt-3 mb-3">
+            <div>
+              <input
+                type="file"
+                class="form-control"
+                id="inputGroupFile04"
+                aria-describedby="inputGroupFileAddon04"
+                aria-label="Upload"
+                onChange={(e) => {
+                  console.log(e.target.files);
 
-                const formData = new FormData();
-
-                let file = e.target.files[0];
-                formData.append("file", file);
-                formData.append("api-key", "827464371697588");
-                formData.append("folder", "onlineShop");
-                formData.append("upload_preset", "fhnodb1h");
-
-                axios
-                  .post(url, formData)
-                  .then((res) => {
-                    console.log(res);
-
-                    setProductItem({
-                      ...productItem,
-                      thumbImage: res.data.secure_url,
-                    });
-                    setLoading(false);
-                  })
-                  .catch((err) => console.log(err));
-              }}
-              multiple
-            />
-            {loading && "Uploading ..."}
-            <br />
+                  const arr = [];
+                  arr.push(e.target.files);
+                  sendFile("images", arr);
+                }}
+                multiple
+              />
+              {loading && "Uploading ..."}
+              <br />
+            </div>
           </div>
         </div>
         <hr />

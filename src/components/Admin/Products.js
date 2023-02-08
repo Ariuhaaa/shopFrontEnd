@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Category from "./Category";
 
 export default function Products() {
   const navigate = useNavigate();
@@ -27,6 +26,11 @@ export default function Products() {
         setProducts(data.result);
       });
   }
+
+  // const proEdit = () => {
+  //   const id = products.id;
+  //   console.log(id);
+  // };
 
   return (
     <div>
