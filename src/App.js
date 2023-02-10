@@ -8,20 +8,22 @@ import Products from "./components/Admin/Products";
 import Menu from "./components/Admin/Menu";
 import User from "./components/Admin/User";
 import ProductNew from "./components/Admin/ProductNew";
+import UserList from "./components/Admin/UserList";
 
 function App() {
   return (
     <div className="container-fluid p-0">
       <Routes>
-        <Route path="/admin" element={<AdminLayout />} />
+        <Route path="/" element={<AdminLayout />} />
         <Route element={<AdminLayout />}>
           <Route index path="/admin" element={<Dashboard />} />
-          <Route path="/user" element={<User />} />
+          <Route path="/user" element={<UserList />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/category" element={<Category />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product" element={<ProductNew />} />
+          <Route path="/users" element={<User />} />
         </Route>
       </Routes>
     </div>
