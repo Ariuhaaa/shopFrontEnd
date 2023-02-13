@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+// import UserLogin from "./UserLogin";
 
 export default function AdminLayout() {
   return (
@@ -40,7 +41,7 @@ export default function AdminLayout() {
           <div className="d-flex gap-4 justify-content-end mb-4 mt-3 ">
             <div className="d-flex gap-1">
               <i class="bi bi-person-circle"></i>
-              <div>User</div>
+              {/* <div onClick={<UserLogin />}>User</div> */}
             </div>
             <div className="d-flex  gap-1">
               <i class="bi bi-box-arrow-right"></i>
