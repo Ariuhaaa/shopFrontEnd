@@ -22,7 +22,10 @@
 //     <div className="container">
 //       <h5>User List</h5>
 //       <br />
-//       <button className="btn btn-primary" onClick={Modal}>
+//       <button
+//         className="btn btn-primary"
+//         //   onClick={Modal}
+//       >
 //         {/* onClick={() => navigate("/UserList")} */}
 //         Add User
 //       </button>
